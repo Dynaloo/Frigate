@@ -48,7 +48,7 @@ Install Frigate
 
 **Install is finish, open your browser and enter the frigate IP address**
 
-    http://ipfrigate:5000
+    http://your_ip_frigate:5000
 
 
 ***See the Frigate documentation to configure your first camera***
