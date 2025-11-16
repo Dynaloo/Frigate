@@ -10,7 +10,7 @@ If virtualizing, configure a passthrough for the integrated graphics processor (
 
 # Installation
 
-In first, open console with logging in as your root logging created on Debian 13 (Trixie), then, execute the following commands
+In first, open console with logging in as your **root** logging created on Debian 13 (Trixie), then, execute the following commands
 
 For script download
 
@@ -26,13 +26,13 @@ Then, execute the script
 
 Then follow the on-screen instructions...
 
-When ashed, enter the loging account name created on Debian 13 (**not account root**)
+When asked, enter your loging account name created on Debian 13 (**not account root**)
 
 Then, when install is completed,
 
     reboot
     
-Then, re-logging to console with logging in as your logging created on Debian 13 (**not account root**)
+Then, reconnect to the console using username and password (**not account root**) you created on Debian 13.
 
 Check the frigate directorie exist
 
