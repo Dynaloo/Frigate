@@ -46,9 +46,11 @@ Install Frigate
 
     sudo docker compose up -d
 
-**Install is finish, open your browser and enter the frigate IP address**
+**Install is finish, open your browser and enter your frigate IP address**
 
     http://your_ip_frigate:5000
 
 
 ***See the Frigate documentation to configure your first camera***
+
+See exemple enclosed "config_frigate.yaml"
