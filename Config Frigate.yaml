@@ -1,13 +1,13 @@
-##########################################################
-### Config Frigate v0.16.2 pour camera REOLINK E1 Zoom ###
-##########################################################
+#################################################################
+### Config Frigate v0.16.2 minimal for camera REOLINK E1 Zoom ###
+#################################################################
 
 mqtt:
   enabled: false  # must be "true" if used on Home Assistant
-  host: your_IP_mqtt  # Must be modified with your settings
+  host: your_IP_mqtt  # Must be modified with your mqtt settings
   port: 1883
-  user: your_user_mqtt  # Must be modified with your settings
-  password: your_mqtt_password  # Must be modified with your settings
+  user: your_user_mqtt  # Must be modified with your mqtt settings
+  password: your_mqtt_password  # Must be modified with your mqtt settings
   topic_prefix: frigate
   client_id: frigate
   stats_interval: 60
@@ -31,9 +31,9 @@ ffmpeg:
 go2rtc:
   streams:
     salon_main:
-      - rtsp://your_login:your_password@your_IP_camera:554//Preview_01_main # for CAMERA REOLINK E1 Zoom # Must be modified with your settings
+      - rtsp://your_login:your_password@your_IP_camera:554//Preview_01_main # for CAMERA REOLINK E1 Zoom # Must be modified with your camera settings
 #    salon_sub:
-#      - rtsp://your_login:your_password@your_IP_camera:554/Preview_01_sub # for CAMERA REOLINK E1 Zoom # Must be modified with your settings
+#      - rtsp://your_login:your_password@your_IP_camera:554/Preview_01_sub # for CAMERA REOLINK E1 Zoom # Must be modified with your camera settings
   webrtc:
     listen: 8555
     candidates:
@@ -68,46 +68,3 @@ cameras:
       streams:
         main_stream: salon_main
 #        sub_streams: salon_sub
-    objects:
-      track:
-        - person
-      filters:
-        person:
-          min_score: 0.7 # Optional: minimum score for the object to initiate tracking
-          threshold: 0.8 # Optional: minimum decimal percentage for tracked object's computed score to be considered a true positive
-    motion:
-      threshold: 30 # Seuil de détection de mouvement
-      contour_area: 10
-      improve_contrast: true
-    notifications:
-      enabled: true
-record:
-  enabled: true # Active l'enregistrement des vidéos
-  expire_interval: 60
-  retain:
-    days: 1 # Nb de jour de sauvegarde des enregistrements, mettre 0 pour purger
-    mode: motion # Enregistre uniquement les mouvements détectés
-  alerts:
-    pre_capture: 5 # Capture x secondes avant l'alerte
-    post_capture: 5 # Capture x secondes apres l'alecte
-    retain:
-      days: 1 # Nb de jour de sauvegarde des alertes, mettre 0 pour purger
-      mode: motion # Enregistre les alertes déclenchés par des mouvements
-  detections:
-    pre_capture: 5 # Nb de jour de sauvegarde des detections, mettre 0 pour purger
-    post_capture: 5 # Nb de jour de sauvegarde des detections, mettre 0 pour purger
-    retain:
-      days: 1 # Nb de jour de sauvegarde des detections, mettre 0 pour purger
-      mode: motion # Enregistre les detections déclenchés par des mouvements
-
-snapshots:
-  enabled: true
-  bounding_box: true # Affiche une boîte de délimitation autour des objets détectés
-  clean_copy: true # Garde une copie propre des snapshots sans annotations
-  timestamp: false # Ajoute un timestamp aux snapshots
-  crop: false # Ne recadre pas les snapshots
-  quality: 70  # Contrôle la qualité de compression JPEG du snapshot, 70 est un bon equilibre entre qualité et taille de fichier
-  retain:
-    default: 1 # Nb de jour de sauvegarde des snapshots
-    objects:
-      person: 10
