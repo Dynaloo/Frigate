@@ -53,4 +53,4 @@ Install Frigate
 
 ***See the Frigate documentation to configure your first camera***
 
-See exemple enclosed "config_frigate.yaml"
+See exemple enclosed "Config Frigate.yaml"
