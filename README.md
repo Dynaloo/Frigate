@@ -18,13 +18,13 @@ Then, execute the script
 
 Then follow the on-screen instructions...
 
-enter the loging account name created on Debian 13 (not account root)
+enter the loging account name created on Debian 13 (**not account root**)
 
 Then, when install is completed,
 
     reboot
     
-Then, open console with logging in as your logging created on Debian 13 (not account root)
+Then, open console with logging in as your logging created on Debian 13 (**not account root**)
 
 Check the frigate directorie exist
 
@@ -38,9 +38,9 @@ Install Frigate
 
     sudo docker compose up -d
 
-Install is finish, Open your browser and enter the frigate IP address
+**Install is finish, open your browser and enter the frigate IP address**
 
-    http;//ipfrigate:5000
+    http://ipfrigate:5000
 
 
-See the Frigate documentation to configure your first camera 
+***See the Frigate documentation to configure your first camera***
