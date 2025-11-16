@@ -3,11 +3,11 @@
 ##########################################################
 
 mqtt:
-  enabled: true
-  host: 192.168.1.61
+  enabled: false  # must be "true" if used on Home Assistant
+  host: your_IP_mqtt  # Must be modified with your settings
   port: 1883
-  user: mqtt
-  password: mqttpassword
+  user: your_user_mqtt  # Must be modified with your settings
+  password: your_mqtt_password  # Must be modified with your settings
   topic_prefix: frigate
   client_id: frigate
   stats_interval: 60
@@ -31,23 +31,23 @@ ffmpeg:
 go2rtc:
   streams:
     salon_main:
-      - rtsp://admin:Lancia61@192.168.1.7:554//Preview_01_main # CAMERA REOLINK E1 Zoom
+      - rtsp://your_login:your_password@your_IP_camera:554//Preview_01_main # for CAMERA REOLINK E1 Zoom # Must be modified with your settings
 #    salon_sub:
-#      - rtsp://admin:Lancia61@192.168.1.7:554/Preview_01_sub # CAMERA REOLINK E1 Zoom
+#      - rtsp://your_login:your_password@your_IP_camera:554/Preview_01_sub # for CAMERA REOLINK E1 Zoom # Must be modified with your settings
   webrtc:
     listen: 8555
     candidates:
       - 127.0.0.1:8555
-      - 192.168.1.163:8555
+      - your_IP_Frigate:8555  # Must be modified with your settings
 
 cameras:
   salon:
     enabled: true
     onvif:
-      host: 192.168.1.7
-      port: 8000
-      user: admin
-      password: Lancia61
+      host: your_IP_camera  # Must be modified with your settings
+      port: your_port_onvif_camera  # Must be modified with your settings
+      user: your_user_camera  # Must be modified with your settings
+      password: your_password_camera  # Must be modified with your settings
       ignore_time_mismatch: true
     ffmpeg:
       inputs:
@@ -79,10 +79,6 @@ cameras:
       threshold: 30 # Seuil de détection de mouvement
       contour_area: 10
       improve_contrast: true
-      mask:
-        - 1,0.069,0.631,0.071,0.63,0,1,0
-        - 0.775,0.361,0.866,0.34,0.874,0.611,0.783,0.617
-        - 0.553,0.429,0.655,0.403,0.657,0.605,0.553,0.621
     notifications:
       enabled: true
 record:
@@ -90,124 +86,6 @@ record:
   expire_interval: 60
   retain:
     days: 1 # Nb de jour de sauvegarde des enregistrements, mettre 0 pour purger
-    mode: motion # Enregistre uniquement les mouvements détectés
-  alerts:
-    pre_capture: 5 # Capture x secondes avant l'alerte
-    post_capture: 5 # Capture x secondes apres l'alecte
-    retain:
-      days: 1 # Nb de jour de sauvegarde des alertes, mettre 0 pour purger
-      mode: motion # Enregistre les alertes déclenchés par des mouvements
-  detections:
-    pre_capture: 5 # Nb de jour de sauvegarde des detections, mettre 0 pour purger
-    post_capture: 5 # Nb de jour de sauvegarde des detections, mettre 0 pour purger
-    retain:
-      days: 1 # Nb de jour de sauvegarde des detections, mettre 0 pour purger
-      mode: motion # Enregistre les detections déclenchés par des mouvements
-
-snapshots:
-  enabled: true
-  bounding_box: true # Affiche une boîte de délimitation autour des objets détectés
-  clean_copy: true # Garde une copie propre des snapshots sans annotations
-  timestamp: false # Ajoute un timestamp aux snapshots
-  crop: false # Ne recadre pas les snapshots
-  quality: 70  # Contrôle la qualité de compression JPEG du snapshot, 70 est un bon equilibre entre qualité et taille de fichier
-  retain:
-    default: 1 # Nb de jour de sauvegarde des snapshots
-    objects:
-      person: 10
-
-
-####################################################
-### Config Frigate v0.16.2 pour camera TAPO C220 ###
-####################################################
-
-mqtt:
-  enabled: true
-  host: 192.168.1.61
-  port: 1883
-  user: mqtt
-  password: mqttpassword
-  topic_prefix: frigate
-  client_id: frigate
-  stats_interval: 60
-
-detectors:
-  ov:
-    type: openvino
-    device: GPU
-
-model:
-  width: 300
-  height: 300
-  input_tensor: nhwc
-  input_pixel_format: bgr
-  path: /openvino-model/ssdlite_mobilenet_v2.xml
-  labelmap_path: /openvino-model/coco_91cl_bkgr.txt
-
-ffmpeg:
-  hwaccel_args: preset-vaapi
-
-go2rtc:
-  streams:
-    salon:
-      - rtsp://Dynaloo:Lancia61@192.168.1.188:554/stream1 #CAMERA TAPO C220
-    #salon_sub:
-    #  - rtsp://Dynaloo:Lancia61@192.168.1.188:554/stream2 #CAMERA TAPO C220
-  webrtc:
-    listen: 8555
-    candidates:
-      - 127.0.0.1:8555
-      - 192.168.1.163:8555
-
-cameras:
-  salon:
-    enabled: true
-    onvif:
-      host: 192.168.1.188
-      port: 2020
-      user: Dynaloo
-      password: Lancia61
-      ignore_time_mismatch: true
-    ffmpeg:
-      inputs:
-        - path: rtsp://127.0.0.1:8554/salon
-          roles:
-            - record
-            - detect
-        #- path: rtsp://127.0.0.1:8554/salon_sub
-        #  roles:
-        #    - detect
-    live:
-      streams:
-        main_stream: salon
-        #sub_streams: salon_sub
-    detect:
-      enabled: true
-      height: 360 # Hauteur des images utilisées pour la détection
-      width: 640 # Largeur des images utilisées pour la détection
-      fps: 5 # Taux de détection en images par seconde
-      #annotation_offset: -500
-    objects:
-      track:
-        - person
-      filters:
-        person:
-          min_score: 0.7 # Optional: minimum score for the object to initiate tracking
-          threshold: 0.8 # Optional: minimum decimal percentage for tracked object's computed score to be considered a true positive
-    motion:
-      threshold: 30 # Seuil de détection de mouvement
-      contour_area: 10
-      improve_contrast: true
-      mask:
-        - 0.364,0.046,0.005,0.047,0,0,0.364,0
-        - 0.896,0.206,0.997,0.199,1,0.592,0.902,0.594
-        - 0.633,0.324,0.722,0.316,0.725,0.588,0.63,0.588
-
-record:
-  enabled: true # Active l'enregistrement des vidéos
-  expire_interval: 60
-  retain:
-    days: 0 # Nb de jour de sauvegarde des enregistrements, mettre 0 pour purger
     mode: motion # Enregistre uniquement les mouvements détectés
   alerts:
     pre_capture: 5 # Capture x secondes avant l'alerte
