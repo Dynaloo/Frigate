@@ -1,6 +1,14 @@
 # Frigate
 
-This script allows the automatic installation of Frigate on Debian 13 (Trixie)
+**This script allows the automatic installation of Frigate on Debian 13 (Trixie)**
+
+# Prerequisites
+
+**Install Debian 13 on your computer (or virtualize it on Proxmox, for example)**
+
+If virtualizing, configure a passthrough for the integrated graphics processor (IGPU)
+
+# Installation
 
 In first, open console with logging in as your root logging created on Debian 13 (Trixie), then, execute the following commands
 
@@ -18,13 +26,13 @@ Then, execute the script
 
 Then follow the on-screen instructions...
 
-enter the loging account name created on Debian 13 (**not account root**)
+When ashed, enter the loging account name created on Debian 13 (**not account root**)
 
 Then, when install is completed,
 
     reboot
     
-Then, open console with logging in as your logging created on Debian 13 (**not account root**)
+Then, re-logging to console with logging in as your logging created on Debian 13 (**not account root**)
 
 Check the frigate directorie exist
 
