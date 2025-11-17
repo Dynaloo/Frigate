@@ -14,15 +14,15 @@ In first, open console with logging in as your **root** logging created on Debia
 
 For script download
 
-    wget https://github.com/Dynaloo/Frigate/blob/main/frigate.sh
+    wget https://github.com/Dynaloo/Frigate/blob/main/install_frigate.sh
 
 Make the script executable
 
-    chmod +x frigate.sh
+    chmod +x install_frigate.sh
 
 Then, execute the script
 
-    ./frigate.sh
+    ./install_frigate.sh
 
 Then follow the on-screen instructions...
 
